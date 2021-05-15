@@ -1,0 +1,26 @@
+<pre>
+<h1>Add a Digibyte transaction that points into youtube</h1>
+
+Fill out the following form and you will be presented with a QR code which describes a tiny 
+digibyte transaction. If you send some Digibyte to the address, then it will be recorded on 
+the ledger here: <a href=https://digibyteblockexplorer.com/address/DDDE9cfLpaaQ4uyQioXKFSLXE9BPFw1bq9> Youtube receive address</a>
+
+The next part is our job here at the ledger church. We will take the moneys that you sent us 
+and use it to seed a new transaction. In some ways you just have to trust that we will do this
+for you, but if we don't then it will hurt our reputation because the while world can see if
+we were true to our word...really.
+
+
+
+<form method="POST" action="build.php" enctype="multipart/form-data">
+	    <table>
+		    <tr><td>Artist:     <td><input type="text" name="subject"> <td> (example: Men Without Hats)<div style="color:blue"> will become: DAxMENxWiTHoUTxHATSzzzzzzzzzYpfSsB</div><br></tr>
+		    <tr><td>Title:      <td><input type="text" name="description"> <td> (example: Safety Dance)
+		    <div style="color:blue"> will become: DCxSAFETYxDANCEzzzzzzzzzzzzzYMgjo9</div></tr> 
+		    <tr><td>Youtube URL: <td>         <input type="text" name="url"><td> (example: https://www.youtube.com/watch?v=<span style="color:blue">AjPau5QYtYs</span>)
+		    <div style="color:blue"> the key AjPau5QYtYs will be stores as a data field</tr>
+        <input type="hidden" name="type" value="DBxYoUTUBEhCoMzzzzzzzzzzzzzzZkL3DC">
+	    </table>
+	    <br><br>
+    <input type="submit" name="uploadBtn" value="Submit" />
+  </form>
