@@ -5,10 +5,14 @@ include "/var/www/html/src/lib.php";
 
 $address = "digibyte:DDDE9cfLpaaQ4uyQioXKFSLXE9BPFw1bq9";
 
+$address = "dgb1q4rdplx7k92y4llzq6v6qf9mgpr5zey2j8wp767";
+$full_address = "digibyte:$address";
+
 $subject = rtrim(unspendable("DAx",$_POST[subject]));
 $description = rtrim(unspendable("DCx",$_POST[description]));
 $url = str2hex(substr($_POST[url],32));
-
+$url = str2hex($_POST[url]);
+echo $url;
 
 $string = "{\n";
 $string = $string . "\"$subject\":0.00001,\n";
@@ -25,11 +29,11 @@ echo $string;
 
 $amount = "6.000" . $ext;
 
-$checkout="$address?amount=6.000$ext";
+$checkout="$full_address?amount=6.000$ext";
 
 echo $checkout;
 
-`echo $checkout | qr > $subject-$ext.png`;
+`echo -n '$checkout' | qr > $subject-$ext.png`;
 
 echo "<hr><img width=200px height=200px src='$subject-$ext.png'>";
 
@@ -45,7 +49,7 @@ $input = "";
 	$txids = json_decode(file_get_contents("/var/www/html/dgb/unspent.json"));
 	foreach($txids as $txid)
 	{ 
-		print_r($txid);
+	//	print_r($txid);
 		if($txid->amount == $amount)
 			if($txid->address == $address)
 		{
@@ -55,5 +59,5 @@ $input = "";
 	}
 
 	echo "$input";
-	echo "<meta http-equiv='refresh' content='4; url=fund.php?target=$subject-$ext'>";
+	echo "<meta http-equiv='refresh' content='0; url=fund.php?target=$subject-$ext'>";
 

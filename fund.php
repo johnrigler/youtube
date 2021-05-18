@@ -2,10 +2,18 @@
 
 echo "<h1>Send Digibyte to this address to complete transaction</h1>";
 
+$address = "dgb1q4rdplx7k92y4llzq6v6qf9mgpr5zey2j8wp767";
+$full_address = "digibyte:" . $address;
+
 $target = $_GET[target];
+
+
 $image = "$target.png";
 
 $exploded = explode("-",$target);
+$len = strlen($exploded[1]);
+
+// if($len == 5)$paybutton="$full_address?amount=6.000$exploded[1]";
 
 // This part runs after an external script send the transaction
 //
@@ -38,7 +46,7 @@ foreach($txids as $txid)
 //	echo $magic . "\n";
 
 	if(($txid->amount == $magic2) || ($txid->amount == $magic))
-		if($txid->address == "DDDE9cfLpaaQ4uyQioXKFSLXE9BPFw1bq9")
+		if($txid->address == $address)
 		{
 		$input="$exploded[0]-$exploded[1].input";
 		file_put_contents($input,"[ { \"txid\":\"$txid->txid\",\"vout\":$txid->vout } ]");
@@ -47,7 +55,9 @@ foreach($txids as $txid)
 	}
 }	
 
+// echo "<hr><h1>$paybutton</h1><hr>";
+
 echo "<meta http-equiv='refresh' content='10; url=fund.php?target=$_GET[target]'>";
 
-echo "<a target=_target href=http://ledger.church/dgb/unspent.json>Check to see if funds have been received</a>";
+echo "<a target=_target href=../dgb/unspent.json>Check to see if funds have been received</a>";
 
